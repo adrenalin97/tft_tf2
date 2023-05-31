@@ -18,7 +18,6 @@ setup(
     license='',
     author='',
     author_email='',
-    python_requires='<3.8',
     description='Self version of TFT google research repo',
     install_requires=install_requires,
     include_package_data=True,
