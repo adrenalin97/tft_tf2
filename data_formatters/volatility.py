@@ -42,11 +42,12 @@ class VolatilityFormatter(GenericDataFormatter):
       ('date', DataTypes.DATE, InputTypes.TIME),
       ('log_vol', DataTypes.REAL_VALUED, InputTypes.TARGET),
       ('open_to_close', DataTypes.REAL_VALUED, InputTypes.OBSERVED_INPUT),
-      ('days_from_start', DataTypes.REAL_VALUED, InputTypes.KNOWN_INPUT),
+      ('high_to_low', DataTypes.REAL_VALUED, InputTypes.OBSERVED_INPUT),
+      ('hours_from_start', DataTypes.REAL_VALUED, InputTypes.KNOWN_INPUT),
       ('day_of_week', DataTypes.CATEGORICAL, InputTypes.KNOWN_INPUT),
       ('day_of_month', DataTypes.CATEGORICAL, InputTypes.KNOWN_INPUT),
       ('week_of_year', DataTypes.CATEGORICAL, InputTypes.KNOWN_INPUT),
-      ('month', DataTypes.CATEGORICAL, InputTypes.KNOWN_INPUT),
+      ('hour_of_day', DataTypes.CATEGORICAL, InputTypes.KNOWN_INPUT),
       ('Region', DataTypes.CATEGORICAL, InputTypes.STATIC_INPUT),
   ]
 
