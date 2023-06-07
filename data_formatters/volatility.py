@@ -75,7 +75,6 @@ class VolatilityFormatter(GenericDataFormatter):
     """
 
     print('Formatting train-valid-test splits.')
-
     index = df['datetime'].dt.year
     train = df.loc[index < valid_boundary]
     valid = df.loc[(index >= valid_boundary) & (index < test_boundary)]
