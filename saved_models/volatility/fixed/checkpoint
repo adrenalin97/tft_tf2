@@ -1,2 +1,0 @@
-model_checkpoint_path: "/content/drive/MyDrive/tft_tf2/outputs/saved_models/volatility/fixed/TemporalFusionTransformer.ckpt"
-all_model_checkpoint_paths: "/content/drive/MyDrive/tft_tf2/outputs/saved_models/volatility/fixed/TemporalFusionTransformer.ckpt"
