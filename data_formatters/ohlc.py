@@ -41,16 +41,22 @@ class OHLCFormatter(GenericDataFormatter):
 
   _column_definition = [
       ('Symbol', DataTypes.CATEGORICAL, InputTypes.ID),
-      ('date', DataTypes.DATE, InputTypes.TIME),
-      ('close', DataTypes.REAL_VALUED, InputTypes.TARGET),
-      ('open_to_close', DataTypes.REAL_VALUED, InputTypes.OBSERVED_INPUT),
-      ('high_to_low', DataTypes.REAL_VALUED, InputTypes.OBSERVED_INPUT),
-      ('hours_from_start', DataTypes.REAL_VALUED, InputTypes.KNOWN_INPUT),
-      ('day_of_week', DataTypes.CATEGORICAL, InputTypes.KNOWN_INPUT),
-      ('day_of_month', DataTypes.CATEGORICAL, InputTypes.KNOWN_INPUT),
-      ('week_of_year', DataTypes.CATEGORICAL, InputTypes.KNOWN_INPUT),
-      ('hour_of_day', DataTypes.CATEGORICAL, InputTypes.KNOWN_INPUT),
-      ('Region', DataTypes.CATEGORICAL, InputTypes.STATIC_INPUT),
+      ('Datetime', DataTypes.DATE, InputTypes.TIME),
+      # ('Open', DataTypes.REAL_VALUED, InputTypes.OBSERVED_INPUT),
+      # ('High', DataTypes.REAL_VALUED, InputTypes.OBSERVED_INPUT),
+      # ('Low', DataTypes.REAL_VALUED, InputTypes.OBSERVED_INPUT),
+      ('HighLowDifference', DataTypes.REAL_VALUED, InputTypes.OBSERVED_INPUT),
+      ('OpenCloseDifference', DataTypes.REAL_VALUED, InputTypes.OBSERVED_INPUT),
+      # ('Volume', DataTypes.REAL_VALUED, InputTypes.OBSERVED_INPUT),
+      # ('ATR', DataTypes.REAL_VALUED, InputTypes.OBSERVED_INPUT),
+      # ('RSI', DataTypes.REAL_VALUED, InputTypes.OBSERVED_INPUT),
+      ('Close', DataTypes.REAL_VALUED, InputTypes.TARGET),
+      ('HourOfDay', DataTypes.CATEGORICAL, InputTypes.KNOWN_INPUT),
+      ('HoursFromStart', DataTypes.REAL_VALUED, InputTypes.KNOWN_INPUT),
+      ('DayOfWeek', DataTypes.CATEGORICAL, InputTypes.KNOWN_INPUT),
+      ('DayOfMonth', DataTypes.CATEGORICAL, InputTypes.KNOWN_INPUT),
+      ('WeekOfYear', DataTypes.CATEGORICAL, InputTypes.KNOWN_INPUT),
+      ('Region', DataTypes.CATEGORICAL, InputTypes.STATIC_INPUT)
   ]
 
   def __init__(self):
@@ -75,13 +81,13 @@ class OHLCFormatter(GenericDataFormatter):
     Returns:
       Tuple of transformed (train, valid, test) data.
     """
-    df['date'] = pd.to_datetime(df['date'])
-    min_date = df['date'].agg(['min'])[0]
-    max_date = df['date'].agg(['max'])[0]
+    df['Datetime'] = pd.to_datetime(df['Datetime'])
+    min_date = df['Datetime'].agg(['min'])[0]
+    max_date = df['Datetime'].agg(['max'])[0]
     valid_boundary = min_date+(max_date-min_date)/2
     test_boundary = valid_boundary+((max_date-min_date)/4)
 
-    index = df['date']
+    index = df['Datetime']
     train = df.loc[index < valid_boundary]
     valid = df.loc[(index >= valid_boundary) & (index < test_boundary)]
     test = df.loc[(index >= test_boundary)] #& (df.index <= '2019-06-28')]
